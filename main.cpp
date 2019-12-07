@@ -115,26 +115,29 @@ public:
  {
      //cout << "I'm in eval function" << endl;
      
-     if (!root){
+     if (!root)
          return 0;
-     }
+     
+     if(left==nullptr&&right==nullptr)
+         return root->getValue();
+     
      int left_val = left->eval();
    
      int right_val = right->eval();
    
      
-     if (root ->getOp()=="+"){
+     if (root ->getOp()=="+")
          return left_val+right_val;
-     }
-     if (root->getOp()=="-"){
+     
+     if (root->getOp()=="-")
          return left_val-right_val;
-     }
-     if (root->getOp()=="*"){
+     
+     if (root->getOp()=="*")
          return left_val*right_val;
-     }
-     if(root->getOp()=="/"){
-     return left_val/right_val;
-     }
+     
+     if(root->getOp()=="/")
+         return left_val/right_val;
+     
      return pow(left_val,right_val);
  } ;
         
