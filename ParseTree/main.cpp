@@ -18,6 +18,8 @@ class Operator{
     string symbol;
     string op;
     int p ;
+    
+    
 public:
     Operator(){
     }
@@ -102,7 +104,6 @@ public:
 
 class ParseTree{
      
-      
       Operator *root;
       
       ParseTree *left;
@@ -112,15 +113,12 @@ class ParseTree{
 public:
  int eval(ParseTree* root)
  {
-    
      if (!root)
          return 0;
    
-     
      if (!root->left && !root->right)
          return (root->root->getValue());
    
-    
      int left_val = eval(root->left);
    
      int right_val = eval(root->right);
@@ -150,6 +148,13 @@ public:
     }
     void setRight(ParseTree* pr){
         right = pr;
+    }
+    Operator* getRoot(){
+        if(root == nullptr)
+            return root = nullptr;
+       else
+           root -> getValue();
+        return 0;
     }
     
 };
@@ -281,13 +286,12 @@ stack <Operator*> first;
 
              
                 
-stack<ParseTree*> pt;
-vector <Operator*>:: iterator iter = postFix.begin();
-                
-  while(iter != postFix.end())
+ stack<ParseTree*> pt;
+ ParseTree Ptree;
+ 
   
-  {
-      if(*iter.getType() == "num"){
+for (vector<Operator*>::iterator iter = postFix.begin() ; iter != postFix.end(); iter++){
+      if((*iter)->getType() == "num"){
           ParseTree *p1 = new ParseTree();
           p1 ->setRoot(*iter);
           p1 ->setLeft(nullptr);
@@ -303,9 +307,12 @@ vector <Operator*>:: iterator iter = postFix.begin();
           pt.pop();
           pt.push(p2);
           }
-          
-          
+      
+         
   }
+                Ptree.eval();
+    
+        //??
 
 
                 
